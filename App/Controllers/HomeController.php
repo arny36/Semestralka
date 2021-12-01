@@ -104,7 +104,7 @@ class HomeController extends AControllerBase
 
     public function uprav(){
 
-
+        if ($this->skontroluj($_POST['nazov'], $_POST['obrazok'], $_POST['popis'])){
             $art = Prispevok::getOne($_GET['id']);
             $art->setObrazok($_POST['obrazok']);
             $art->setNazov($_POST['nazov']);
@@ -114,9 +114,13 @@ class HomeController extends AControllerBase
             $art->save();
 
             $this->redirectToIndex();
+        }   else {
+            $this->redirectToIndex();
+        }
 
 
-    }
+
+        }
 
 
     public function redirectToIndex()
