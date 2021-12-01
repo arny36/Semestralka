@@ -27,18 +27,21 @@ class HomeController extends AControllerBase
 
 
     }
+
     public function kontakt()
     {
         return $this->html(
             []
         );
     }
+
     public function podujatia()
     {
         return $this->html(
             []
         );
     }
+
     public function pridajPrispevok()
     {
         return $this->html(
@@ -59,9 +62,7 @@ class HomeController extends AControllerBase
     public function pridaj()
     {
 
-        if (!isset($_POST['nazov'])) {
-            return null ;
-        } else {
+        if ($this->skontroluj($_POST['nazov'], $_POST['obrazok'], $_POST['popis'])){
             $art = new Prispevok();
             $art->setObrazok($_POST['obrazok']);
             $art->setNazov($_POST['nazov']);
@@ -69,8 +70,26 @@ class HomeController extends AControllerBase
             $art->setPopis($_POST['popis']);
             $art->save();
             $this->redirectToIndex();
-
+        } else {
+            $this->redirectToIndex();
         }
+
+
+
+
+
+    }
+
+    public function skontroluj($nazov,$obrazok,$popis)
+    {
+        if(!($nazov==null)){
+            if(!($obrazok==null)) {
+                if(!($popis==null)){
+                    return true;
+                }
+            }
+        }
+        return false;
 
     }
 

@@ -11,7 +11,7 @@
 
 
                 <div class="col">
-                    <a href="?&a=vymaz&id=<?= $galeria->id ?>"  class="btn btn-danger">X</a>
+                    <a href="?&a=vymaz&id=<?= $galeria->id ?>" onclick="return confirm('Si si istý že chceš vymazať tento príspevok ?');"  class="btn btn-danger">X</a>
                     <div class="card shadow-sm">
                         <img class="galery-imgs" src=<?= $galeria->obrazok?> alt="gtlsta">
                         <div class="card-body">

@@ -6,20 +6,20 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Názov príspevku</label>
             <div class="col-sm-10">
-                <input type="text" name="nazov" class="form-control" id="inputPassword">
+                <input type="text" name="nazov" class="form-control" id="nazov" placeholder="Názov príspevku" required>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Popis</label>
             <div class="col-sm-10">
-                <textarea type="text" name="popis" class="form-control" id="inputPassword"></textarea>
+                <input type="text" name="popis" class="form-control" id="prispevok" minlength="30" placeholder="Popis príspevku" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Obrázok</label>
             <div class="col-sm-10">
-                <input type="text" name="obrazok" class="form-control" id="inputPassword">
+                <input type="text" name="obrazok" class="form-control" id="obrazok"  pattern="https://.*.jpg" placeholder="URL adresy obrázka vo formáte JPG" required>
             </div>
         </div>
         <div class="form-group row">
