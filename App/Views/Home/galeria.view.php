@@ -17,7 +17,6 @@
                         <div class="card-body">
                             <p class="galeria-nadpis"><?= $galeria->nazov?> </p>
                             <p class="card-text"><?= $galeria->popis?> </p>
-                            <p class="card-text"><?= $galeria->id?> </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="?c=home&a=upravPrispevok&id=<?= $galeria->id ?>&nazov=<?= $galeria->nazov ?>&obrazok=<?= $galeria->obrazok ?>&popis=<?= $galeria->popis ?>&datum=<?= $galeria->datum ?>"  class="btn btn-outline-primary">Edit</a>
