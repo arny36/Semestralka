@@ -69,9 +69,9 @@ class HomeController extends AControllerBase
             $art->setDatum($_POST['datum']);
             $art->setPopis($_POST['popis']);
             $art->save();
-            $this->redirectToIndex();
+            $this->redirectToIndex("Uspesne ste pridali prvok");
         } else {
-            $this->redirectToIndex();
+            $this->redirectToIndex("Nepodarilo sa pridat prvok");
         }
 
 
@@ -97,8 +97,13 @@ class HomeController extends AControllerBase
         if (isset($_GET['id'])) {
             $art = Prispevok::getOne($_GET['id']);
             $art->delete();
+            $this->redirectToIndex("Uspesne ste vymazali prvok");
+        } else
+        {
+            $this->redirectToIndex("Nepodarilo sa vymazať prvok");
+
         }
-        $this->redirectToIndex();
+
 
     }
 
@@ -113,9 +118,9 @@ class HomeController extends AControllerBase
 
             $art->save();
 
-            $this->redirectToIndex();
+            $this->redirectToIndex("Podarilo sa upraviť prvok");
         }   else {
-            $this->redirectToIndex();
+            $this->redirectToIndex("Zadali ste zle parametre");
         }
 
 
@@ -123,9 +128,14 @@ class HomeController extends AControllerBase
         }
 
 
-    public function redirectToIndex()
+    public function redirectToIndex($vypis)
     {
-        header("Location:?c=home&a=galeria");
+        if ($vypis=="") {
+
+            header("Location:?c=home&a=galeria");
+        }else {
+        header("Location:?c=home&a=galeria&error=$vypis");
+        }
         die();
     }
 }

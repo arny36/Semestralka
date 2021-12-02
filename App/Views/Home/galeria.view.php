@@ -5,6 +5,12 @@
 
     <div class="album py-5  ">
         <div class="container">
+            <?php if (isset($_GET['error'])) {?>
+                <div class="alert alert-secondary alert-dismissible">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <?= $_GET['error'] ?>
+                </div>
+            <?php } ?>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <?php /** @var \App\Models\Prispevok[] $data */
             foreach ($data as $galeria) { ?>
