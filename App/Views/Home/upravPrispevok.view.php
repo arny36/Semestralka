@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form method="post" action="?a=uprav&id=<?= $_GET['id'] ?>">
+    <form method="post" enctype="multipart/form-data" action="?a=uprav&id=<?= $_GET['id'] ?>">
 
 
         <div class="form-group row">
@@ -19,7 +19,7 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Obrázok</label>
             <div class="col-sm-10">
-                <input type="text" name="obrazok" class="form-control" id="obrazok" pattern="https://.*.jpg" value="<?= $_GET['obrazok'] ?>" required>
+                <input type="file" name="obrazok"  id="obrazok" accept=".jpg, .jpeg, .png"  value="<?= $_GET['obrazok'] ?>" >
             </div>
         </div>
         <div class="form-group row">

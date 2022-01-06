@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form method="post" action="?a=pridaj">
+    <form method="post" enctype="multipart/form-data" action="?a=pridaj">
 
 
         <div class="form-group row">
@@ -19,15 +19,14 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Obrázok</label>
             <div class="col-sm-10">
-                <input type="text" name="obrazok" class="form-control" id="obrazok"  pattern="https://.*.jpg" placeholder="URL adresy obrázka vo formáte JPG" required>
+                <input type="file" name="obrazok"  id="obrazok" accept=".jpg, .jpeg, .png" >
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Dátum</label>
             <div class="col-sm-10">
 
-                <input type="date" id="inputPassword" name="datum"
-                       min="2018-03-02" value="2018-05-02">
+                <input type="date" id="inputPassword" name="datum">
             </div>
         </div>
 

@@ -38,7 +38,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <img class="galery-imgs" src="Semestralka/public/obrazky/podujatia-dumbier.jpg" alt="pdumbier" >
+                        <img class="galery-imgs" src="Semestralka/public/obrazky;/podujatia-dumbier.jpg" alt="pdumbier" >
                         <div class="card-body">
                             <p class="galeria-nadpis">Ďumbier</p>
                             <p class="datum">5.12.2021</p>

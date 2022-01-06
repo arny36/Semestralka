@@ -19,13 +19,13 @@
                 <div class="col">
                     <a href="?&a=vymaz&id=<?= $galeria->id ?>" onclick="return confirm('Si si istý že chceš vymazať tento príspevok ?');"  class="btn btn-danger">X</a>
                     <div class="card shadow-sm">
-                        <img class="galery-imgs" src=<?= $galeria->obrazok?> alt="gtlsta">
+                        <img class="galery-imgs" src="Semestralka/<?=\App\Config\Configuration::UPLOAD_DIR."/".$galeria->obrazok?> " alt="gtlsta">
                         <div class="card-body">
                             <p class="galeria-nadpis"><?= $galeria->nazov?> </p>
                             <p class="card-text"><?= $galeria->popis?> </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="?c=home&a=upravPrispevok&id=<?= $galeria->id ?>&nazov=<?= $galeria->nazov ?>&obrazok=<?= $galeria->obrazok ?>&popis=<?= $galeria->popis ?>&datum=<?= $galeria->datum ?>"  class="btn btn-outline-primary">Edit</a>
+                                    <a href="?c=home&a=upravPrispevok&id=<?= $galeria->id ?>&nazov=<?=$galeria->nazov?>&obrazok=<?= $galeria->obrazok ?>&popis=<?= $galeria->popis ?>&datum=<?= $galeria->datum ?>"  class="btn btn-outline-primary">Edit</a>
 
                                 </div>
                                 <small class="text-muted"><?= $galeria->datum?></small>

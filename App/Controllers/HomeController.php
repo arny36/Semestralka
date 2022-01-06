@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Models\Prispevok;
 
@@ -62,16 +63,31 @@ class HomeController extends AControllerBase
     public function pridaj()
     {
 
-        if ($this->skontroluj($_POST['nazov'], $_POST['obrazok'], $_POST['popis'])){
-            $art = new Prispevok();
-            $art->setObrazok($_POST['obrazok']);
-            $art->setNazov($_POST['nazov']);
-            $art->setDatum($_POST['datum']);
-            $art->setPopis($_POST['popis']);
-            $art->save();
-            $this->redirectToIndex("Uspesne ste pridali prvok");
+        if ($this->skontroluj($_POST['nazov'],  $_POST['popis'])){
+            if ($_FILES["obrazok"]["error"] == UPLOAD_ERR_OK) {
+
+                $tmp_name = $_FILES['obrazok']['tmp_name'];
+
+                $name = time()."_".$_FILES["obrazok"]["name"];
+                $path = Configuration::UPLOAD_DIR . "/$name";
+                move_uploaded_file($tmp_name, $path);
+
+
+                $novyPrispevok = new Prispevok();
+                $novyPrispevok->obrazok = $name;
+                $novyPrispevok->setNazov($_POST['nazov']);
+                $novyPrispevok->setDatum($_POST['datum']);
+                $novyPrispevok->setPopis($_POST['popis']);
+                $novyPrispevok->save();
+
+
+                $this->redirectToIndex("Uspesne ste pridali prvok");
+            }else {
+                $this->redirectToIndex("Nepodarilo sa pridat prvok - Obrazok sa nenašiel");
+            }
+
         } else {
-            $this->redirectToIndex("Nepodarilo sa pridat prvok");
+            $this->redirectToIndex("Nepodarilo sa pridat prvok - Vyplňte všetky polia");
         }
 
 
@@ -80,14 +96,14 @@ class HomeController extends AControllerBase
 
     }
 
-    public function skontroluj($nazov,$obrazok,$popis)
+    public function skontroluj($nazov,$popis)
     {
         if(!($nazov==null)){
-            if(!($obrazok==null)) {
+
                 if(!($popis==null)){
                     return true;
                 }
-            }
+
         }
         return false;
 
@@ -109,16 +125,29 @@ class HomeController extends AControllerBase
 
     public function uprav(){
 
-        if ($this->skontroluj($_POST['nazov'], $_POST['obrazok'], $_POST['popis'])){
-            $art = Prispevok::getOne($_GET['id']);
-            $art->setObrazok($_POST['obrazok']);
-            $art->setNazov($_POST['nazov']);
-            $art->setDatum($_POST['datum']);
-            $art->setPopis($_POST['popis']);
+        if ($this->skontroluj($_POST['nazov'],  $_POST['popis'])){
 
-            $art->save();
+
+            $novyPrispevok = Prispevok::getOne($_GET['id']);
+            if ($_FILES["obrazok"]["error"] == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES['obrazok']['tmp_name'];
+
+                $name = time() . "_" . $_FILES["obrazok"]["name"];
+                $path = Configuration::UPLOAD_DIR . "/$name";
+                move_uploaded_file($tmp_name, $path);
+
+
+                $novyPrispevok->setObrazok($name);
+            }
+            $novyPrispevok->setNazov($_POST['nazov']);
+            $novyPrispevok->setDatum($_POST['datum']);
+            $novyPrispevok->setPopis($_POST['popis']);
+
+            $novyPrispevok->save();
 
             $this->redirectToIndex("Podarilo sa upraviť prvok");
+
+
         }   else {
             $this->redirectToIndex("Zadali ste zle parametre");
         }
