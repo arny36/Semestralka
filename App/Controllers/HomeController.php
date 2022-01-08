@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Config\Configuration;
 use App\Core\AControllerBase;
+use App\Models\Kontakt;
 use App\Models\Prispevok;
+use App\Models\Udalost;
 
 /**
  * Class HomeController
@@ -18,9 +20,14 @@ class HomeController extends AControllerBase
     {
         return $this->html(
             [
-                'meno' => 'študent'
+
             ]);
     }
+    public function podujatie()
+    {
+        return $this->html(Udalost::getAll());
+    }
+
 
     public function galeria()
     {
@@ -31,19 +38,27 @@ class HomeController extends AControllerBase
 
     public function kontakt()
     {
-        return $this->html(
-            []
-        );
+        return $this->html(Kontakt::getAll());
     }
 
-    public function podujatia()
+
+
+    public function pridajPrispevok()
     {
         return $this->html(
             []
         );
+
     }
 
-    public function pridajPrispevok()
+    public function pridajUdalost()
+    {
+        return $this->html(
+            []
+        );
+
+    }
+    public function pridajKontakt()
     {
         return $this->html(
             []
@@ -81,13 +96,13 @@ class HomeController extends AControllerBase
                 $novyPrispevok->save();
 
 
-                $this->redirectToIndex("Uspesne ste pridali prvok");
+                $this->redirectToGaleria("Uspesne ste pridali prvok");
             }else {
-                $this->redirectToIndex("Nepodarilo sa pridat prvok - Obrazok sa nenašiel");
+                $this->redirectToGaleria("Nepodarilo sa pridat prvok - Obrazok sa nenašiel");
             }
 
         } else {
-            $this->redirectToIndex("Nepodarilo sa pridat prvok - Vyplňte všetky polia");
+            $this->redirectToGaleria("Nepodarilo sa pridat prvok - Vyplňte všetky polia");
         }
 
 
@@ -113,10 +128,10 @@ class HomeController extends AControllerBase
         if (isset($_GET['id'])) {
             $art = Prispevok::getOne($_GET['id']);
             $art->delete();
-            $this->redirectToIndex("Uspesne ste vymazali prvok");
+            $this->redirectToGaleria("Uspesne ste vymazali prvok");
         } else
         {
-            $this->redirectToIndex("Nepodarilo sa vymazať prvok");
+            $this->redirectToGaleria("Nepodarilo sa vymazať prvok");
 
         }
 
@@ -145,11 +160,11 @@ class HomeController extends AControllerBase
 
             $novyPrispevok->save();
 
-            $this->redirectToIndex("Podarilo sa upraviť prvok");
+            $this->redirectToGaleria("Podarilo sa upraviť prvok");
 
 
         }   else {
-            $this->redirectToIndex("Zadali ste zle parametre");
+            $this->redirectToGaleria("Zadali ste zle parametre");
         }
 
 
@@ -157,7 +172,120 @@ class HomeController extends AControllerBase
         }
 
 
-    public function redirectToIndex($vypis)
+
+
+    public function pridajUda()
+    {
+
+        if ($this->skontroluj($_POST['nazov'],  $_POST['popis'])){
+            if ($_FILES["obrazok"]["error"] == UPLOAD_ERR_OK) {
+
+                $tmp_name = $_FILES['obrazok']['tmp_name'];
+
+                $name = time()."_".$_FILES["obrazok"]["name"];
+                $path = Configuration::UPLOAD_DIR . "/$name";
+                move_uploaded_file($tmp_name, $path);
+
+
+                $novyPrispevok = new Udalost();
+                $novyPrispevok->obrazok = $name;
+                $novyPrispevok->setNazov($_POST['nazov']);
+                $novyPrispevok->setDatum($_POST['datum']);
+                $novyPrispevok->setPopis($_POST['popis']);
+                $novyPrispevok->setZucastneni(0);
+                $novyPrispevok->save();
+
+
+                $this->redirectToUdalost("Podarilo sa upraviť prvok");
+            }
+
+        }
+
+    }
+
+    public function pridajKont()
+    {
+
+
+        $novyKontakt = new Kontakt();
+        $novyKontakt->setMeno($_POST['meno']);
+        $novyKontakt->setPriezvisko($_POST['priezvisko']);
+        $novyKontakt->setPozicia($_POST['pozicia']);
+        $novyKontakt->setEmail($_POST['email']);
+        $novyKontakt->save();
+
+
+        $this->redirectToKontakt("Podarilo sa upraviť prvok");
+
+    }
+
+    public function vymazKontakt()
+    {
+
+
+        if (isset($_GET['id'])) {
+            $kont = Kontakt::getOne($_GET['id']);
+            $kont->delete();
+            $this->redirectToKontakt("Podarilo sa vymazať prvok");
+        } else
+        {
+            $this->redirectToGaleria("Nepodarilo sa vymazať prvok");
+
+        }
+
+    }
+
+    public function zucasni(){
+        if (isset($_GET['id'])) {
+
+            $udalost = Udalost::getOne($_GET['id']);
+            $udalost->setZucastneni();
+            $udalost->save();
+            $this->redirectToUdalost("Uspesne ");
+        } else
+        {
+            $this->redirectToUdalost("Neuspesne");
+        }
+
+    }
+
+    public function vymaz1() {
+        if (isset($_GET['id'])) {
+            $art = Udalost::getOne($_GET['id']);
+            $art->delete();
+            $this->redirectToUdalost("Uspesne ste vymazali prvok");
+        } else
+        {
+            $this->redirectToUdalost("Nepodarilo sa vymazať prvok");
+
+        }
+
+
+    }
+
+    public function redirectToUdalost($vypis)
+    {
+        if ($vypis=="") {
+
+            header("Location:?c=home&a=podujatie");
+        }else {
+            header("Location:?c=home&a=podujatie&error=$vypis");
+        }
+        die();
+    }
+
+    public function redirectToKontakt($vypis)
+    {
+        if ($vypis=="") {
+
+            header("Location:?c=home&a=kontakt");
+        }else {
+            header("Location:?c=home&a=kontakt&error=$vypis");
+        }
+        die();
+    }
+
+    public function redirectToGaleria($vypis)
     {
         if ($vypis=="") {
 

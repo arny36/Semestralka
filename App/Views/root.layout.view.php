@@ -23,7 +23,7 @@
     <div class="container">
         <a class="navbar-brand" href="?c=home">Domov</a>
         <a class="navbar-brand" href="?c=home&a=galeria">Galéria</a></li>
-        <a class="navbar-brand" href="?c=home&a=podujatia">Podujatia</a>
+        <a class="navbar-brand" href="?c=home&a=podujatie">Podujatie</a>
         <a class="navbar-brand" href="?c=home&a=kontakt">Kontakt</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

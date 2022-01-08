@@ -1,5 +1,12 @@
 <?php /** @var Array $data */ ?>
 <main>
+
+    <?php if (isset($_GET['error'])) {?>
+        <div class="alert alert-secondary alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <?= $_GET['error'] ?>
+        </div>
+    <?php } ?>
     <div class="odsek"></div>
     <div class="container marketing">
 
@@ -27,12 +34,14 @@
 
 
     <div class="container">
+
         <div class="bd-example">
+            <a href="?c=home&a=pridajKontakt" class="btn btn-danger">Pridať kontakt</a>
             <table class="table table-dark table-borderless">
                 <thead>
 
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Identifikačné číslo</th>
                     <th scope="col">Meno</th>
                     <th scope="col">Priezivsko</th>
                     <th scope="col">Pozícia</th>
@@ -40,27 +49,33 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Horolezec</td>
-                    <td>markotto24@gmail.com</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>Pamiatkár</td>
-                    <td>JacobThornton1@gmail.com</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Jhon</td>
-                    <td>Pern</td>
-                    <td>Sprievodca</td>
-                    <td>JhonPern2@gmail.com</td>
-                </tr>
+
+                    <?php /** @var \App\Models\Kontakt[] $data */
+                    foreach ($data as $kontakt) { ?>
+                    <tr>
+                    <th scope="row"><?= $kontakt->id ?> <a href="?&a=vymazKontakt&id=<?= $kontakt->id ?>" onclick="return confirm('Si si istý že chceš vymazať tento príspevok ?');"  class="btn btn-danger">X</a></th>
+                    <td><?= $kontakt->meno?></td>
+                    <td><?= $kontakt->priezvisko?></td>
+                    <td><?php switch ($kontakt->pozicia){
+                            case 0:
+                                echo "Horolezec";
+                                break;
+                            case 1:
+                                echo "Pamiatkár";
+                                break;
+                            case 2:
+                                echo "Sprievodca";
+                                break;
+
+                        }?></td>
+                    <td><?= $kontakt->email?> </td>
+
+                    </tr>
+
+
+                    <?php } ?>
+
+
                 </tbody>
 
             </table>
