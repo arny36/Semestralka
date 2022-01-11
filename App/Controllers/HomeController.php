@@ -6,6 +6,7 @@ use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Models\Kontakt;
 use App\Models\Prispevok;
+use App\Models\Registracia;
 use App\Models\Udalost;
 
 /**
@@ -34,6 +35,16 @@ class HomeController extends AControllerBase
         return $this->html(Prispevok::getAll());
 
 
+    }
+
+    public function login()
+    {
+        return $this->html([]);
+    }
+
+    public function register()
+    {
+        return $this->html([]);
     }
 
     public function kontakt()
@@ -203,21 +214,7 @@ class HomeController extends AControllerBase
 
     }
 
-    public function pridajKont()
-    {
 
-
-        $novyKontakt = new Kontakt();
-        $novyKontakt->setMeno($_POST['meno']);
-        $novyKontakt->setPriezvisko($_POST['priezvisko']);
-        $novyKontakt->setPozicia($_POST['pozicia']);
-        $novyKontakt->setEmail($_POST['email']);
-        $novyKontakt->save();
-
-
-        $this->redirectToKontakt("Podarilo sa upraviť prvok");
-
-    }
 
     public function vymazKontakt()
     {
@@ -262,6 +259,31 @@ class HomeController extends AControllerBase
 
 
     }
+
+
+    public function zaregistruj()
+    {
+
+
+        $udaj = new Registracia();
+        $udaj->setMeno($_POST['meno']);
+        $udaj->setPriezvisko($_POST['priezvisko']);
+        $udaj->setHeslo($_POST['heslo']);
+        $udaj->setEmail($_POST['email']);
+        $udaj->save();
+
+
+        header("Location:?c=home&a=index");
+
+    }
+
+
+
+
+
+
+
+
 
     public function redirectToUdalost($vypis)
     {
