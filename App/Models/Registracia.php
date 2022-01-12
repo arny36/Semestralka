@@ -8,14 +8,12 @@ use App\Core\Model;
 class Registracia extends Model
 {
 
-    public $id;
     public $meno;
     public $priezvisko;
     public $heslo;
     public $email;
     /**
      * Udalost constructor.
-     * @param $id
      * @param $meno
      * @param $priezvisko;
      * @param $heslo;
@@ -23,7 +21,7 @@ class Registracia extends Model
      */
     public function __construct()
     {
-        $this->id = 0;
+
         $this->meno = null;
         $this->priezvisko = null;
         $this->heslo = null;
@@ -50,11 +48,11 @@ class Registracia extends Model
     }
     static public function setDbColumns()
     {
-        return ['id','meno','priezvisko', 'email','heslo'];
+        return ['meno','priezvisko', 'email','heslo'];
     }
 
     static public function setTableName()
     {
-        return 'registracia';
+        return 'register';
     }
 }

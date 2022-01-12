@@ -19,6 +19,8 @@
 </head>
 
 <body>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
     <div class="container">
         <a class="navbar-brand" href="?c=home">Domov</a>
@@ -36,7 +38,11 @@
             </ul>
 
         </div>
-        <a class="navbar-brand" href="?c=home&a=login">Login</a>
+        <?php if (\App\Auth::jePrihlaseny()) {  ?>
+            <a class="navbar-brand" href="?c=home&a=login">Odhlásiť</a>
+        <?php } else {?>
+            <a class="navbar-brand" href="?c=home&a=login">Login</a>
+        <?php } ?>
     </div>
 </nav>
 <div class="container">

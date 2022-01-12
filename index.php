@@ -1,4 +1,5 @@
 <?php
+
 require "ClassLoader.php";
 
 use App\App;

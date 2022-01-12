@@ -8,6 +8,7 @@ use App\Models\Kontakt;
 use App\Models\Prispevok;
 use App\Models\Registracia;
 use App\Models\Udalost;
+use App\Auth;
 
 /**
  * Class HomeController
@@ -268,7 +269,7 @@ class HomeController extends AControllerBase
         $udaj = new Registracia();
         $udaj->setMeno($_POST['meno']);
         $udaj->setPriezvisko($_POST['priezvisko']);
-        $udaj->setHeslo($_POST['heslo']);
+        $udaj->setHeslo(password_hash($_POST['heslo'],PASSWORD_DEFAULT));
         $udaj->setEmail($_POST['email']);
         $udaj->save();
 
@@ -278,6 +279,20 @@ class HomeController extends AControllerBase
     }
 
 
+    public function prihlas()
+    {
+        $heslo = $_POST['heslo'];
+        $data = Registracia::getAll('email = ?', [$_POST['email']]);
+        if (password_verify($heslo, $data[0]->heslo)){
+
+            Auth::prihlasit($data[0]->email);
+
+            header("Location:?c=home&a=index");
+            return;
+        }
+        header("Location:?c=login&a=index");
+
+    }
 
 
 

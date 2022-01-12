@@ -7,24 +7,24 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Prihlásenie</h2>
 
-                            <form>
+                            <form method="post" enctype="multipart/form-data" action="?a=prihlas">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <input type="text" name="email" id="form3Example1cg" class="form-control form-control-lg" />
                                     <label class="form-label" for="form3Example1cg">E-mail</label>
                                 </div>
 
 
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                    <input type="password"  name="heslo" id="form3Example4cg" class="form-control form-control-lg" />
                                     <label class="form-label" for="form3Example4cg">Heslo</label>
                                 </div>
 
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Prihlásiť</button>
+                                    <button type="prihlas" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Prihlásiť</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Nemáš ešte účet ? <a href="?c=home&a=register" class="fw-bold text-body"><u>Zaregistruj sa tu !</u></a></p>
