@@ -6,31 +6,36 @@
                     <div class="card" style="border-radius: 15px;">
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Vytvoriť účet</h2>
-
-                            <form  method="post" enctype="multipart/form-data" action="?a=zaregistruj">
+                            <?php if (isset($_GET['error'])) {?>
+                                <div class="alert alert-secondary alert-dismissible">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    <?= $_GET['error'] ?>
+                                </div>
+                            <?php } ?>
+                            <form  method="post" enctype="multipart/form-data" action="?c=konto&a=zaregistruj">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text"  name="meno" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <input type="text"  name="meno" id="form3Example1cg"  pattern="[a-zA-Z]+" class="form-control form-control-lg" required/>
                                     <label class="form-label" for="form3Example1cg">Meno</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="priezvisko" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <input type="text" name="priezvisko" id="form3Example1cg" class="form-control form-control-lg" pattern="[a-zA-Z]+" required />
                                     <label class="form-label" for="form3Example1cg">Priezvisko</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg"  required>
                                     <label class="form-label" for="form3Example3cg">E-mail</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" name="heslo" id="form3Example4cg" class="form-control form-control-lg" />
+                                    <input type="password" name="heslo" id="form3Example4cg" class="form-control form-control-lg" required />
                                     <label class="form-label" for="form3Example4cg">Heslo</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" name="heslo2" id="form3Example4cdg"  class="form-control form-control-lg" />
+                                    <input type="password" name="heslo2" id="form3Example4cdg"  class="form-control form-control-lg" required />
                                     <label class="form-label" for="form3Example4cdg">Zopakuj heslo</label>
                                 </div>
 
@@ -40,7 +45,7 @@
                                     <button type="register" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                                 </div>
 
-                                <p class="text-center text-muted mt-5 mb-0">Máš už vytvorený účet ?<a href="?c=home&a=login" class="fw-bold text-body"><u> Prihlás sa tu!</u></a></p>
+                                <p class="text-center text-muted mt-5 mb-0">Máš už vytvorený účet ?<a href="?c=konto&a=login" class="fw-bold text-body"><u> Prihlás sa tu!</u></a></p>
 
                             </form>
 

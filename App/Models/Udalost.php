@@ -69,9 +69,9 @@ class Udalost extends Model
         return $this->zucastneni;
     }
 
-    public function setZucastneni(): void
+    public function setZucastneni($cislo): void
     {
-        $this->zucastneni += 1;
+        $this->zucastneni += $cislo;
     }
 
     public function getPopis()

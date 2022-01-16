@@ -36,12 +36,14 @@
     <div class="container">
 
         <div class="bd-example">
-            <a href="?c=home&a=pridajKontakt" class="btn btn-danger">Pridať kontakt</a>
+            <?php if (\App\Auth::jePrihlasenyAdmin()) {  ?>
+            <a href="?c=kontakty&a=pridajKontakt" class="btn btn-danger">Pridať kontakt</a>
+            <?php }  ?>
             <table class="table table-dark table-borderless">
                 <thead>
 
                 <tr>
-                    <th scope="col">Identifikačné číslo</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Meno</th>
                     <th scope="col">Priezivsko</th>
                     <th scope="col">Pozícia</th>
@@ -53,8 +55,14 @@
                     <?php /** @var \App\Models\Kontakt[] $data */
                     foreach ($data as $kontakt) { ?>
                     <tr>
-                    <th scope="row"><?= $kontakt->id ?> <a href="?&a=vymazKontakt&id=<?= $kontakt->id ?>" onclick="return confirm('Si si istý že chceš vymazať tento príspevok ?');"  class="btn btn-danger">X</a></th>
-                    <td><?= $kontakt->meno?></td>
+
+                    <th scope="row">
+                        <?php if (\App\Auth::jePrihlasenyAdmin()) {  ?>
+                        <a href="?c=kontakty&a=vymazKontakt&id=<?= $kontakt->id ?>" onclick="return confirm('Si si istý že chceš vymazať tento príspevok ?');"  class="btn btn-danger">X</a>
+                        <?php }  ?>
+                        <?= $kontakt->id ?></th>
+
+                        <td><?= $kontakt->meno?></td>
                     <td><?= $kontakt->priezvisko?></td>
                     <td><?php switch ($kontakt->pozicia){
                             case 0:

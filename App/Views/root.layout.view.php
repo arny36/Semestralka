@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="Semestralka/public/css.css" type="text/css">
     <link rel="icon" href="Semestralka/public/obrazky/icon.png">
 
+    <script type="text/javascript" src="Semestralka/public/posunObrazkov.js"></script>
+    <script type="text/javascript" src="Semestralka/public/ajax.js"></script>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -25,10 +27,12 @@
     <div class="container">
         <a class="navbar-brand" href="?c=home">Domov</a>
         <a class="navbar-brand" href="?c=home&a=galeria">Galéria</a></li>
-        <a class="navbar-brand" href="?c=home&a=podujatie">Podujatie</a>
-        <a class="navbar-brand" href="?c=home&a=kontakt">Kontakt</a>
+        <a class="navbar-brand" href="?c=podujatia&a=podujatie">Podujatie</a>
+        <a class="navbar-brand" href="?c=kontakty&a=kontakt">Kontakt</a>
 
-
+        <?php if (\App\Auth::jePrihlasenyAdmin()) {  ?>
+            <a class="navbar-brand" href="?c=konto&a=konta">Používatelia</a>
+        <?php }?>
 
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
@@ -38,11 +42,21 @@
             </ul>
 
         </div>
+
         <?php if (\App\Auth::jePrihlaseny()) {  ?>
-            <a class="navbar-brand" href="?c=home&a=login">Odhlásiť</a>
+            <b class="navbar-brand" ><?php $meno = \App\Auth::ktoJePrihlaseny();
+                echo $meno?></b>
+            <a class="navbar-brand" href="?c=konto&a=odhlas">Odhlásiť</a>
+
         <?php } else {?>
-            <a class="navbar-brand" href="?c=home&a=login">Login</a>
+            <a class="navbar-brand" href="?c=konto&a=login">Login</a>
         <?php } ?>
+
+
+
+
+
+
     </div>
 </nav>
 <div class="container">
