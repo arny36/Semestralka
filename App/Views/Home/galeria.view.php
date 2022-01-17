@@ -38,13 +38,9 @@
                 </div>
             <?php } ?>
             </div>
-
         </div>
     </div>
 
 </main>
 
 
-
-
-</body>

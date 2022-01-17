@@ -15,34 +15,34 @@
                             <form  method="post" enctype="multipart/form-data" action="?c=konto&a=zaregistruj">
 
                                 <div class="form-outline mb-4">
-                                    <input type="text"  name="meno" id="form3Example1cg"  pattern="[a-zA-Z]+" class="form-control form-control-lg" required/>
-                                    <label class="form-label" for="form3Example1cg">Meno</label>
+                                    <input type="text"  name="meno" id="meno"  pattern="[a-zA-Z]+" class="form-control form-control-lg" required/>
+                                    <label class="form-label" >Meno</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="priezvisko" id="form3Example1cg" class="form-control form-control-lg" pattern="[a-zA-Z]+" required />
-                                    <label class="form-label" for="form3Example1cg">Priezvisko</label>
+                                    <input type="text" name="priezvisko" id="priezvisko" class="form-control form-control-lg" pattern="[a-zA-Z]+" required />
+                                    <label class="form-label" >Priezvisko</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" name="email" id="form3Example3cg" class="form-control form-control-lg"  required>
-                                    <label class="form-label" for="form3Example3cg">E-mail</label>
+                                    <input type="email" name="email" id="email" class="form-control form-control-lg"  required>
+                                    <label class="form-label" >E-mail</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" name="heslo" id="form3Example4cg" class="form-control form-control-lg" required />
-                                    <label class="form-label" for="form3Example4cg">Heslo</label>
+                                    <input type="password" name="heslo" id="heslo" class="form-control form-control-lg" required />
+                                    <label class="form-label" >Heslo</label>
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" name="heslo2" id="form3Example4cdg"  class="form-control form-control-lg" required />
-                                    <label class="form-label" for="form3Example4cdg">Zopakuj heslo</label>
+                                    <input type="password" name="heslo2" id="heslo2"  class="form-control form-control-lg" required />
+                                    <label class="form-label" >Zopakuj heslo</label>
                                 </div>
 
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="register" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Máš už vytvorený účet ?<a href="?c=konto&a=login" class="fw-bold text-body"><u> Prihlás sa tu!</u></a></p>

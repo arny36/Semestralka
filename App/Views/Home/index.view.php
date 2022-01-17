@@ -1,20 +1,18 @@
 <?php /** @var Array $data */ ?>
-<body onload="showDivs(1)">
+
 <div class="w3-content w3-display-container"  style="max-width:600px" >
-    <img class="mySlides" src="Semestralka/public/obrazky/rakytov.jpg" style="width:100%" alt="rakytov">
+    <img class="mySlides" onload="showDivs(1)" src="Semestralka/public/obrazky/rakytov.jpg" style="width:100%" alt="rakytov">
     <img class="mySlides" src="Semestralka/public/obrazky/krivanska.jpg" style="width:100%" alt="krivanska">
     <img class="mySlides" src="Semestralka/public/obrazky/tlsta.jpg" style="width:100%" alt="tlsta">
     <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-        <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-        <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+        <div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
+        <div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
         <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
         <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
         <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
     </div>
 </div>
 
-
-</body>
 
 
 <main>

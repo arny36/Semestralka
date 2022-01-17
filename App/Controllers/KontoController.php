@@ -59,9 +59,10 @@ class KontoController extends AControllerRedirect
         $conn = new mysqli("localhost", "root", "dtb456");
 
         if (isset($_POST['email'])) {
-            $email = $_POST['email'];
-            $insData = mysqli_query($conn, "INSERT INTO `register`(`email`) VALUES('$email')") or
-            $this->redirect("?c=konto&a=register", "Email sa už používa");
+            $data = Registracia::getAll('email = ?', [$_POST['email']]);
+            if ($data[0]->email == $_POST['email'] ) {
+                $this->redirect("?c=konto&a=register", "Email sa už používa");
+            }
         }
 
 
@@ -95,16 +96,32 @@ class KontoController extends AControllerRedirect
     {
         $heslo = $_POST['heslo'];
         $data = Registracia::getAll('email = ?', [$_POST['email']]);
-        if (password_verify($heslo, $data[0]->heslo)){
+        if ($data != null){
+            if (password_verify($heslo, $data[0]->heslo)){
 
-            Auth::prihlasit($data[0]->email,$data[0]->id);
+                Auth::prihlasit($data[0]->email,$data[0]->id);
 
-            $this->redirect("?c=home&a=index","");
-            return;
+                $this->redirect("?c=home&a=index","");
+                return;
+            }
         }
-        $this->redirect("?c=home&a=login","Nepodarilo sa prihlasit");
+        $this->redirect("?c=konto&a=login","Nepodarilo sa prihlasit");
 
     }
+
+    public function vypisPocet()
+    {
+
+        $kont = Registracia::getAll();
+        $pocet = 0;
+        foreach ($kont as $registracia){
+            $pocet++;
+
+        }
+        return $this->json($pocet);
+
+    }
+
 
 
     public function odhlas()
@@ -116,8 +133,26 @@ class KontoController extends AControllerRedirect
     }
 
 
+    public function vymazKonto()
+    {
+
+        $kont = Registracia::getOne($_GET['id']);
+        $kont->delete();
 
 
+    }
+
+
+    public function upravKonto()
+    {
+
+        $udaj = Registracia::getOne($_GET['id']);
+        $udaj->setMeno($_POST['meno']);
+        $udaj->setPriezvisko($_POST['priezvisko']);
+        $udaj->setEmail($_POST['email']);
+        $udaj->save();
+        return $this->json($udaj);
+    }
 
 
 

@@ -115,3 +115,24 @@ a.navbar-brand:hover {
     border-style: outset;
 
 }
+
+.mySlides{
+    border-radius: 50%;
+
+}
+
+.w3-left, .w3-right {
+    color: black;
+
+}
+
+.btn-odstran{
+    color: darkblue;
+    position: initial;
+
+}
+
+.btn-save{
+
+    font-size:28px;
+}

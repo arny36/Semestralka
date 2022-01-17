@@ -30,7 +30,7 @@
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="prihlas" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Prihlásiť</button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Prihlásiť</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Nemáš ešte účet ? <a href="?c=konto&a=register" class="fw-bold text-body"><u>Zaregistruj sa tu !</u></a></p>

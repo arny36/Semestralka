@@ -11,12 +11,14 @@
     <div class="container marketing">
 
         <!-- Three columns of text below the carousel -->
+
+
         <div class="row">
             <div class="col-lg-4">
                 <img class="kontankt-imgs" src="Semestralka/public/obrazky/bean.png" alt="kbean">
                 <h2>Mr.Bean</h2>
                 <h4>Zakladateľ turistov</h4>
-                <p></p>
+
 
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
@@ -90,5 +92,4 @@
         </div>
     </div>
 
-    </body>
 </main>
